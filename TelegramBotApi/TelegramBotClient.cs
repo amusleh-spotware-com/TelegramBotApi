@@ -17,12 +17,14 @@ namespace TelegramBotApi
     public class TelegramBotClient
     {
         private const string BaseUrl = "https://api.telegram.org/bot";
-        private const string BaseFileUrl = "https://api.telegram.org/file/bot";
 
         private readonly string _baseRequestUrl, _token;
 
         public TelegramBotClient(string token)
         {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             _token = token;
             _baseRequestUrl = string.Format("{0}{1}/", BaseUrl, _token);
         }
