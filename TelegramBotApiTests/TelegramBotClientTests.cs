@@ -6,7 +6,7 @@ namespace TelegramBotApi.Tests
     [TestClass()]
     public class TelegramBotClientTests
     {
-        public const string BotToken = "940039667:AAFSTL9K33bigcPtxLhHCWAn_KAzQyRbOM4";
+        public const string BotToken = "";
 
         [TestMethod()]
         public void GetUpdatesTest()
