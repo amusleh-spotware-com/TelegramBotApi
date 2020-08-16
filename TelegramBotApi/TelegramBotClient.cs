@@ -1,13 +1,11 @@
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using TelegramBotApi.Exceptions;
 using TelegramBotApi.Requests;
 using TelegramBotApi.Requests.Abstractions;
 using TelegramBotApi.Types;
-using TelegramBotApi.Types.Enums;
 
 namespace TelegramBotApi
 {
@@ -58,8 +56,7 @@ namespace TelegramBotApi
 
             string responseJson = Encoding.UTF8.GetString(responseByte);
 
-            var apiResponse =
-                JsonConvert.DeserializeObject<ApiResponse<TResponse>>(responseJson)
+            var apiResponse = Deserialize<ApiResponse<TResponse>>(responseJson)
                 ?? new ApiResponse<TResponse> // ToDo is required? unit test
                 {
                     Ok = false,
@@ -72,33 +69,34 @@ namespace TelegramBotApi
             return apiResponse.Result;
         }
 
+        private T Deserialize<T>(string json) where T : new()
+        {
+            using (var stream = new MemoryStream(Encoding.Unicode.GetBytes(json)))
+            {
+                DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(T));
+
+                var result = deserializer.ReadObject(stream);
+
+                return (T)result;
+            }
+        }
+
         #endregion Helpers
 
         #region Getting updates
 
-        public Update[] GetUpdates(int offset = 0, int limit = 0, int timeout = 0, IEnumerable<UpdateType> allowedUpdates = null)
+        public Update[] GetUpdates()
         {
-            return MakeRequest(new GetUpdatesRequest
-            {
-                Offset = offset,
-                Limit = limit,
-                Timeout = timeout,
-                AllowedUpdates = allowedUpdates
-            });
+            return MakeRequest(new GetUpdatesRequest());
         }
 
         #endregion Getting updates
 
         #region Available methods
 
-        public Message SendTextMessage(ChatId chatId, string text)
+        public Message SendTextMessage(string chatId, string text)
         {
             return MakeRequest(new SendMessageRequest(chatId, text));
-        }
-
-        public Message SendTextMessage(long chatId, string text)
-        {
-            return SendTextMessage(new ChatId(chatId), text);
         }
 
         #endregion Available methods

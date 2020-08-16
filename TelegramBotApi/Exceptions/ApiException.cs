@@ -51,40 +51,8 @@ namespace TelegramBotApi.Exceptions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiRequestException"/> class
-        /// </summary>
-        /// <param name="message">The message</param>
-        /// <param name="errorCode">The error code</param>
-        /// <param name="parameters">Response parameters</param>
-        public ApiRequestException(string message, int errorCode, ResponseParameters parameters)
-            : base(message)
-        {
-            ErrorCode = errorCode;
-            Parameters = parameters;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiRequestException"/> class
-        /// </summary>
-        /// <param name="message">The message</param>
-        /// <param name="errorCode">The error code</param>
-        /// <param name="parameters">Response parameters</param>
-        /// <param name="innerException">The inner exception</param>
-        public ApiRequestException(string message, int errorCode, ResponseParameters parameters, Exception innerException)
-            : base(message, innerException)
-        {
-            ErrorCode = errorCode;
-            Parameters = parameters;
-        }
-
-        /// <summary>
         /// Gets the error code.
         /// </summary>
         public virtual int ErrorCode { get; }
-
-        /// <summary>
-        /// Contains information about why a request was unsuccessful.
-        /// </summary>
-        public ResponseParameters Parameters { get; }
     }
 }

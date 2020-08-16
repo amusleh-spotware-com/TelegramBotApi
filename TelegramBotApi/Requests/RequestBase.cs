@@ -1,4 +1,6 @@
-using Newtonsoft.Json;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using TelegramBotApi.Requests.Abstractions;
 
 namespace TelegramBotApi.Requests
@@ -19,11 +21,28 @@ namespace TelegramBotApi.Requests
         }
 
         /// <inheritdoc />
+        [IgnoreDataMember]
         public string MethodName { get; protected set; }
 
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(this);
+            string json;
+
+            using (var stream = new MemoryStream())
+            {
+                var jsonSerializer = new DataContractJsonSerializer(this.GetType());
+
+                jsonSerializer.WriteObject(stream, this);
+
+                stream.Position = 0;
+
+                using (StreamReader streamReader = new StreamReader(stream))
+                {
+                    json = streamReader.ReadToEnd();
+                }
+            }
+
+            return json;
         }
     }
 }

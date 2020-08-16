@@ -1,6 +1,5 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using TelegramBotApi.Types.Enums;
+using System.Runtime.Serialization;
 
 namespace TelegramBotApi.Types
 {
@@ -10,7 +9,7 @@ namespace TelegramBotApi.Types
     /// <remarks>
     /// Only one of the optional parameters can be present in any given update.
     /// </remarks>
-    [JsonObject(MemberSerialization.OptIn, NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
+    [DataContract]
     public class Update
     {
         /// <summary>
@@ -18,32 +17,15 @@ namespace TelegramBotApi.Types
         /// This ID becomes especially handy if you're using Webhooks, since it allows you to ignore repeated updates or to
         /// restore the correct update sequence, should they get out of order.
         /// </summary>
-        [JsonProperty("update_id", Required = Required.Always)]
+        [DataMember(Name = "update_id")]
         public int Id { get; set; }
 
         /// <summary>
         /// Optional. New incoming message of any kind — text, photo, sticker, etc.
         /// </summary>
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        [DataMember(Name = "message")]
         public Message Message { get; set; }
 
-        /// <summary>
-        /// Optional. New version of a message that is known to the bot and was edited
-        /// </summary>
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public Message EditedMessage { get; set; }
-
-        /// <summary>
-        /// Optional. New incoming channel post of any kind — text, photo, sticker, etc.
-        /// </summary>
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public Message ChannelPost { get; set; }
-
-        /// <summary>
-        /// Optional. New version of a channel post that is known to the bot and was edited
-        /// </summary>
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public Message EditedChannelPost { get; set; }
 
         /// <summary>
         /// Gets the update type.
@@ -51,6 +33,7 @@ namespace TelegramBotApi.Types
         /// <value>
         /// The update type.
         /// </value>
+        [IgnoreDataMember]
         public UpdateType Type
         {
             get

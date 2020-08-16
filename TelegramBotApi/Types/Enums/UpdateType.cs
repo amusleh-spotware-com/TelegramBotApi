@@ -1,12 +1,8 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
 namespace TelegramBotApi.Types.Enums
 {
     /// <summary>
     /// The type of an <see cref="Update"/>
     /// </summary>
-    [JsonConverter(typeof(StringEnumConverter), true)]
     public enum UpdateType
     {
         /// <summary>
