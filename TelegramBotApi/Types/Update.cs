@@ -24,5 +24,8 @@ namespace TelegramBotApi.Types
         /// </summary>
         [DataMember(Name = "message")]
         public Message Message { get; set; }
+
+        [DataMember(Name = "channel_post")]
+        public Message ChannelPost { get; set; }
     }
 }

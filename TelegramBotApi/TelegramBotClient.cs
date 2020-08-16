@@ -95,6 +95,11 @@ namespace TelegramBotApi
             return MakeRequest(new SendMessageRequest(chatId, text));
         }
 
+        public ApiResponse<bool> DeleteWebhook()
+        {
+            return MakeRequest(new DeleteWebhookRequest());
+        }
+
         #endregion Available methods
     }
 }

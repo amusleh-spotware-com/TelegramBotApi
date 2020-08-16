@@ -31,5 +31,8 @@ namespace TelegramBotApi.Types
         /// </summary>
         [DataMember(Name = "last_name")]
         public string LastName { get; set; }
+
+        [DataMember(Name = "title")]
+        public string Title { get; set; }
     }
 }

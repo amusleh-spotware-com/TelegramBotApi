@@ -42,6 +42,7 @@
     <Compile Include="Converters\UnixTimeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Abstractions\IRequest.cs" />
+    <Compile Include="Requests\DeleteWebhookRequest.cs" />
     <Compile Include="Requests\SendMessageRequest.cs" />
     <Compile Include="Requests\GetUpdatesRequest.cs" />
     <Compile Include="Requests\RequestBase.cs" />

@@ -1,19 +1,30 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TelegramBotApi.Tests
 {
     [TestClass()]
     public class TelegramBotClientTests
     {
-        public const string BotToken = "";
+        public const string BotToken = "940039667:AAFSTL9K33bigcPtxLhHCWAn_KAzQyRbOM4";
 
         [TestMethod()]
         public void GetUpdatesTest()
         {
             var client = new TelegramBotClient(BotToken);
 
+            client.DeleteWebhook();
+
             var result = client.GetUpdates();
+
+            Assert.IsTrue(result.Ok);
+        }
+
+        [TestMethod()]
+        public void DeleteWebhookTest()
+        {
+            var client = new TelegramBotClient(BotToken);
+
+            var result = client.DeleteWebhook();
 
             Assert.IsTrue(result.Ok);
         }
