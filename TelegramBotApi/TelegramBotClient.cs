@@ -20,7 +20,7 @@ namespace TelegramBotApi
         public TelegramBotClient(string token)
         {
             ServicePointManager.Expect100Continue = true;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)768 | (SecurityProtocolType)3072;
 
             _token = token;
             _baseRequestUrl = string.Format("{0}{1}/", BaseUrl, _token);
