@@ -2,7 +2,6 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using TelegramBotApi.Exceptions;
 using TelegramBotApi.Requests;
 using TelegramBotApi.Requests.Abstractions;
 using TelegramBotApi.Types;
@@ -29,7 +28,7 @@ namespace TelegramBotApi
 
         #region Helpers
 
-        public TResponse MakeRequest<TResponse>(IRequest<TResponse> request)
+        public ApiResponse<TResponse> MakeRequest<TResponse>(IRequest<TResponse> request)
         {
             string url = _baseRequestUrl + request.MethodName;
 
@@ -63,10 +62,7 @@ namespace TelegramBotApi
                     Description = "No response received"
                 };
 
-            if (!apiResponse.Ok)
-                throw new ApiRequestException(apiResponse.Description, apiResponse.ErrorCode);
-
-            return apiResponse.Result;
+            return apiResponse;
         }
 
         private T Deserialize<T>(string json) where T : new()
@@ -85,7 +81,7 @@ namespace TelegramBotApi
 
         #region Getting updates
 
-        public Update[] GetUpdates()
+        public ApiResponse<Update[]> GetUpdates()
         {
             return MakeRequest(new GetUpdatesRequest());
         }
@@ -94,7 +90,7 @@ namespace TelegramBotApi
 
         #region Available methods
 
-        public Message SendTextMessage(string chatId, string text)
+        public ApiResponse<Message> SendTextMessage(string chatId, string text)
         {
             return MakeRequest(new SendMessageRequest(chatId, text));
         }

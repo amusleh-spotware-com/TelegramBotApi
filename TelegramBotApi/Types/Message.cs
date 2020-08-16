@@ -25,7 +25,7 @@ namespace TelegramBotApi.Types
         /// <summary>
         /// Date the message was sent
         /// </summary>
-        [DataMember(Name = "from")]
+        [DataMember(Name = "date")]
         public long DateUnixSeconds
         {
             get { return UnixDateTimeConverter.ToUnixTimeSeconds(Date); }

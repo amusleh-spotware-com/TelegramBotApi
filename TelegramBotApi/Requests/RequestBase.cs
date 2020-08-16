@@ -9,6 +9,7 @@ namespace TelegramBotApi.Requests
     /// Represents a API request
     /// </summary>
     /// <typeparam name="TResponse">Type of result expected in result</typeparam>
+    [DataContract]
     public abstract class RequestBase<TResponse> : IRequest<TResponse>
     {
         /// <summary>

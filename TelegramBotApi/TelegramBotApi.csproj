@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\UnixTimeConverter.cs" />
-    <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Abstractions\IRequest.cs" />
     <Compile Include="Requests\SendMessageRequest.cs" />
@@ -54,7 +53,6 @@
     <Compile Include="TelegramBotClient.cs" />
     <Compile Include="Types\ApiResponse.cs" />
     <Compile Include="Types\Chat.cs" />
-    <Compile Include="Types\Enums\UpdateType.cs" />
     <Compile Include="Types\Message.cs" />
     <Compile Include="Types\Update.cs" />
     <Compile Include="Types\User.cs" />

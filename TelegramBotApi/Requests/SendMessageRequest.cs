@@ -14,13 +14,13 @@ namespace TelegramBotApi.Requests
         /// Unique identifier for the target chat or username of the target channel
         /// </summary>
         [DataMember(Name = "chat_id")]
-        public string ChatId { get; }
+        public string ChatId { get; set; }
 
         /// <summary>
         /// Text of the message to be sent
         /// </summary>
         [DataMember(Name = "text")]
-        public string Text { get; }
+        public string Text { get; set; }
 
         /// <summary>
         /// Initializes a new request with chatId and text

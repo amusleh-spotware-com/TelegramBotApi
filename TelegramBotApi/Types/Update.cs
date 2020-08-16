@@ -1,4 +1,3 @@
-using TelegramBotApi.Types.Enums;
 using System.Runtime.Serialization;
 
 namespace TelegramBotApi.Types
@@ -25,23 +24,5 @@ namespace TelegramBotApi.Types
         /// </summary>
         [DataMember(Name = "message")]
         public Message Message { get; set; }
-
-
-        /// <summary>
-        /// Gets the update type.
-        /// </summary>
-        /// <value>
-        /// The update type.
-        /// </value>
-        [IgnoreDataMember]
-        public UpdateType Type
-        {
-            get
-            {
-                if (Message != null) return UpdateType.Message;
-
-                return UpdateType.Unknown;
-            }
-        }
     }
 }
