@@ -90,7 +90,7 @@ namespace TelegramBotApi
 
         #region Available methods
 
-        public ApiResponse<Message> SendTextMessage(string chatId, string text)
+        public ApiResponse<Message> SendTextMessage(long chatId, string text)
         {
             return MakeRequest(new SendMessageRequest(chatId, text));
         }

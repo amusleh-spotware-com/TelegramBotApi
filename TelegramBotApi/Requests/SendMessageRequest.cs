@@ -14,7 +14,7 @@ namespace TelegramBotApi.Requests
         /// Unique identifier for the target chat or username of the target channel
         /// </summary>
         [DataMember(Name = "chat_id")]
-        public string ChatId { get; set; }
+        public long ChatId { get; set; }
 
         /// <summary>
         /// Text of the message to be sent
@@ -27,7 +27,7 @@ namespace TelegramBotApi.Requests
         /// </summary>
         /// <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
         /// <param name="text">Text of the message to be sent</param>
-        public SendMessageRequest(string chatId, string text)
+        public SendMessageRequest(long chatId, string text)
             : base("sendMessage")
         {
             ChatId = chatId;

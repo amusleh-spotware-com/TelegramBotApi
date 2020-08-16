@@ -34,7 +34,7 @@ namespace TelegramBotApi.Tests
         {
             var client = new TelegramBotClient(BotToken);
 
-            var result = client.SendTextMessage("827464027", "Hello World!");
+            var result = client.SendTextMessage(827464027, "Hello World!");
 
             Assert.IsTrue(result.Ok);
         }
