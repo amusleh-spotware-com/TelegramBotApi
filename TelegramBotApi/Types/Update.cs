@@ -17,7 +17,7 @@ namespace TelegramBotApi.Types
         /// restore the correct update sequence, should they get out of order.
         /// </summary>
         [DataMember(Name = "update_id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Optional. New incoming message of any kind — text, photo, sticker, etc.
